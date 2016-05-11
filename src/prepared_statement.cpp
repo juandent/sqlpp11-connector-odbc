@@ -24,8 +24,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <windows.h>
-#include <ciso646>
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -118,7 +117,7 @@ namespace sqlpp {
 									SQL_C_DOUBLE, 
 									SQL_DOUBLE, 
 									15,
-									DBL_DIG, 
+									__DBL_DIG__, 
 									(SQLPOINTER)value, 
 									   sizeof(double), 
 									   &indPtr);

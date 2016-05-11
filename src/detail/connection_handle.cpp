@@ -25,8 +25,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <windows.h>
-#include <ciso646>
 #include "connection_handle.h"
 #include <sqlpp11/odbc/prepared_statement.h>
 #include <sqlext.h>
