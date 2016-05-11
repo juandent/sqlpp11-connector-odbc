@@ -111,7 +111,7 @@ namespace TabSample_ {
 
 struct TabSample: sqlpp::table_t<TabSample,TabSample_::Alpha,TabSample_::Beta,TabSample_::Gamma> {
 	struct _alias_t {
-		static constexpr const char _literal[] =  "tab_sample";
+		static constexpr const char _literal[11] =  "tab_sample";
 		using _name_t = sqlpp::make_char_sequence<sizeof(_literal), _literal>;
 		
 		template<typename T>

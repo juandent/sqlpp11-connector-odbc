@@ -25,6 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <Windows.h>
 #include "TabSample.h"
 #include <sqlpp11/sqlpp11.h>
 #include <sqlpp11/odbc/odbc.h>
@@ -148,10 +149,23 @@ int main(int argc, const char **argv)
 	(*db)(insert_into(tab).set(tab.alpha = (int64_t)omega, tab.gamma = true, tab.beta = "cheesecake"));
 	(*db)(insert_into(tab).set(tab.gamma = false, tab.beta = "blueberry muffin"));
 
+#define JDH
+#if defined(JDH)
+	/////////////////////////
+	// Note: the following 2 selects return type void!! and that causes the range for loop to not compile...
+	// Question: the current definition of all_of returns void 
+	/////////////////////////
+	auto& coll = (*db)(select(tab.alpha, tab.gamma).from(tab).where(true));
+	for (const auto& row : (*db)(select(all_of(tab)).from(tab).where(true)))
+	{
+		printResultsSample(row);
+	};
+#else	// NEXT is original code
 	for(const auto& row : (*db)(select(all_of(tab)).from(tab).where(true)))
 	{
 		printResultsSample(row);
 	};
+#endif
 	auto date_time = std::chrono::system_clock::time_point() 
 		+ std::chrono::microseconds(3723123456);
 	auto dp = date::floor<date::days>(date_time);
